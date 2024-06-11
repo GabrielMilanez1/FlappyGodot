@@ -1,0 +1,131 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://fonts/PixelifySans-VariableFont_wght.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://images/chao.png" type="Texture" id=2]
+[ext_resource path="res://images/fundao.png" type="Texture" id=3]
+[ext_resource path="res://audio/birdaudio.mp3" type="AudioStream" id=4]
+[ext_resource path="res://cena_passaro.tscn" type="PackedScene" id=5]
+[ext_resource path="res://spript_personagens.gd" type="Script" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 50
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.0196078, 0.0196078, 0, 1 )
+border_color = Color( 0.133333, 0.0823529, 0.0823529, 1 )
+corner_radius_top_left = 13
+corner_radius_top_right = 13
+corner_radius_bottom_right = 13
+corner_radius_bottom_left = 13
+shadow_color = Color( 0, 0, 0, 0 )
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 7 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="fundao" type="Sprite" parent="ParallaxBackground"]
+position = Vector2( 508, 276 )
+scale = Vector2( 1.19416, 1.04977 )
+texture = ExtResource( 3 )
+offset = Vector2( 4.57987, -2.06362 )
+region_rect = Rect2( 41.959, 31.6826, 1.54215, 1.79917 )
+
+[node name="chao" type="Sprite" parent="ParallaxBackground"]
+position = Vector2( 530, 606 )
+scale = Vector2( 1.00781, 1.04977 )
+texture = ExtResource( 2 )
+offset = Vector2( 4.57987, -2.06362 )
+region_rect = Rect2( 41.959, 31.6826, 1.54215, 1.79917 )
+
+[node name="inicio" type="ColorRect" parent="."]
+margin_right = 1029.0
+margin_bottom = 605.0
+color = Color( 0, 0, 0, 0.380392 )
+
+[node name="Label" type="Label" parent="inicio"]
+margin_right = 1024.0
+margin_bottom = 600.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "
+
+ESCOLHA SEU PERSONAGEM"
+align = 1
+
+[node name="inicio2" type="ColorRect" parent="."]
+margin_left = 137.0
+margin_top = 292.0
+margin_right = 910.0
+margin_bottom = 519.0
+color = Color( 1, 1, 1, 0 )
+
+[node name="amarelo" type="Button" parent="inicio2"]
+anchor_left = -0.206
+anchor_top = 0.171
+anchor_right = -0.206
+anchor_bottom = 0.171
+margin_left = 238.238
+margin_top = 83.183
+margin_right = 318.238
+margin_bottom = 115.183
+rect_min_size = Vector2( 2, 0 )
+custom_colors/font_color_disabled = Color( 0.909804, 1, 0.12549, 1 )
+custom_colors/font_color_focus = Color( 0.909804, 1, 0.12549, 1 )
+custom_colors/font_color = Color( 0.909804, 1, 0.12549, 1 )
+custom_colors/font_color_hover = Color( 0.909804, 1, 0.12549, 1 )
+custom_colors/font_color_pressed = Color( 0.909804, 1, 0.12549, 1 )
+custom_fonts/font = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+text = "amarelo"
+icon_align = 1
+
+[node name="apassaro" parent="inicio2" instance=ExtResource( 5 )]
+position = Vector2( 119, 30 )
+
+[node name="vermelho" type="Button" parent="inicio2"]
+margin_left = 335.0
+margin_top = 122.0
+margin_right = 415.0
+margin_bottom = 154.0
+custom_colors/font_color_disabled = Color( 1, 0.0470588, 0.0470588, 1 )
+custom_colors/font_color_focus = Color( 1, 0, 0, 1 )
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 1, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 1, 0, 0, 1 )
+custom_fonts/font = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+text = "vermelho"
+
+[node name="vpassaro" parent="inicio2" instance=ExtResource( 5 )]
+position = Vector2( 375, 30 )
+
+[node name="azul" type="Button" parent="inicio2"]
+margin_left = 591.0
+margin_top = 122.0
+margin_right = 671.0
+margin_bottom = 154.0
+custom_colors/font_color_disabled = Color( 0.0627451, 0.345098, 0.858824, 1 )
+custom_colors/font_color_focus = Color( 0.0627451, 0.345098, 0.858824, 1 )
+custom_colors/font_color = Color( 0.0627451, 0.345098, 0.858824, 1 )
+custom_colors/font_color_hover = Color( 0.0627451, 0.345098, 0.858824, 1 )
+custom_colors/font_color_pressed = Color( 0.0627451, 0.345098, 0.858824, 1 )
+custom_fonts/font = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+text = "azul"
+
+[node name="zpassaro" parent="inicio2" instance=ExtResource( 5 )]
+position = Vector2( 631, 30 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = -30.0
+autoplay = true
+
+[connection signal="pressed" from="inicio2/amarelo" to="." method="_on_amarelo_pressed"]
+[connection signal="pressed" from="inicio2/vermelho" to="." method="_on_vermelho_pressed"]
+[connection signal="pressed" from="inicio2/azul" to="." method="_on_azul_pressed"]
